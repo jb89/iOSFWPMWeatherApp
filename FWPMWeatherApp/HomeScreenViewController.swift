@@ -13,6 +13,9 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var txtfldInsertText: UITextField!
     @IBOutlet weak var btnGo: UIButton!
 
+    @IBAction func actionDefaultButton(sender: UIButton) {
+        _ = GetData(cityName: "Wuerzburg")
+    }
     
     @IBAction func txtfldEditingChanged(sender: UITextField) {
         btnGo.hidden = false
@@ -32,7 +35,7 @@ class HomeScreenViewController: UIViewController {
             .stringByReplacingOccurrencesOfString("Ö", withString: "OE")
             .stringByReplacingOccurrencesOfString("Ü", withString: "UE")
         
-        GetData(cityName: city)
+        _ = GetData(cityName: city)
     }
 
 }

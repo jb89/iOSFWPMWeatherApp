@@ -28,25 +28,4 @@ class ForecastObject {
         return self.instance!
     }
     
-    func printForecastObject() {
-        //        print("Printing Global Data..")
-        //        print("For: \(city.name) in \(city.country)")
-        //        for key in daysAndForecasts.keys {
-        //            print("Forecast for Day \(key)")
-        //            for w in daysAndForecasts[key]! {
-        //                print(w.description())
-        //            }
-        //
-        //        }
-        print("Printing Global Data..")
-        print("For: \(city.name) in \(city.country)")
-        var i=0
-        for arr in daysArray {
-            print("Forecast for Day \(i)")
-            for w in arr {
-                print(w.description())
-            }
-            i+=1
-        }
-    }
 }

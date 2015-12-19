@@ -10,7 +10,7 @@ import Foundation
 
 class TimeslotMeasured {
     var dateAndTime:NSDate
-    var mainTempInCelsius:Float
+    var mainTempInKelvin:Float
     var mainHumidity:Int
     var weatherMainly:String //Könnte man auch als Enum machen
     var weatherDescription:String //Könnte man auch als Enum machen
@@ -24,12 +24,7 @@ class TimeslotMeasured {
     
     init(dateAndTimeUnix:Int, mainTemp:Float, mainHumidity: Int, weatherMainly:String, weatherDescription:String, weatherIcon:String, cloudiness:Int, windSpeed:Float, windDegree:Float, rainVolume:Float) {
         self.dateAndTime = NSDate(timeIntervalSince1970: Double(dateAndTimeUnix)) //man bekommt die "dt"-Zeit aus dem JSON in Int und es wird in NSDate geparst.
-        let format = NSNumberFormatter()
-        format.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        format.maximumFractionDigits = 1
-        let tempInCelsius = mainTemp - 273.15
-        self.mainTempInCelsius = Float(format.stringFromNumber(tempInCelsius)!)!
-        
+        self.mainTempInKelvin = mainTemp
         self.mainHumidity = mainHumidity
         self.weatherMainly = weatherMainly
         self.weatherDescription = weatherDescription
@@ -38,14 +33,56 @@ class TimeslotMeasured {
         self.windSpeed = windSpeed
         self.windDegree = windDegree
         self.rainVolume = rainVolume
-        
     }
     
-    func description() -> String {
-        return "Date: \(self.dateAndTime.description), Temp: \(self.temperatureDescription()), Humidity: \(self.mainHumidity), Weather: \(self.weatherMainly)"
+    func getTempInCelsius() -> Float {
+        let format = NSNumberFormatter()
+        format.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        format.maximumFractionDigits = 1
+        let tempInCelsius = self.mainTempInKelvin - 273.15
+        return Float(format.stringFromNumber(tempInCelsius)!)!
     }
     
-    func temperatureDescription() -> String {
-        return "\(self.mainTempInCelsius) C°"
+    func getWindDirection() -> String {
+        let degree = self.windDegree
+        if degree >= 348.75 && degree < 22.25 {
+            return "to North"
+        } else if degree >= 11.25 && degree < 56.25 {
+            return "to NorthEast"
+        } else if degree >= 56.25 && degree < 101.25 {
+            return "to East"
+        } else if degree >= 101.25 && degree < 146.25 {
+            return "to SouthEast"
+        } else if degree >= 146.25 && degree < 191.25 {
+            return "to South"
+        } else if degree >= 191.25 && degree < 236.25 {
+            return "to SouthWest"
+        } else if degree >= 236.25 && degree < 281.25 {
+            return "to West"
+        } else if degree >= 281.25 && degree < 348.75 {
+            return "to NorthWest"
+        }
+        else {
+            return "NoDir"
+        }
     }
+    
+    func getPictureData() -> NSData {
+        var data:NSData
+        if let url = NSURL(string: "http://openweathermap.org/img/w/\(self.weatherIcon).png") {
+            data = NSData(contentsOfURL: url)!
+        } else {
+            data = NSData(contentsOfURL: NSURL(string: "http://openweathermap.org/img/w/50n.png.png")!)!
+        }
+        return data
+    }
+    
+    func getWindSpeedInKph() -> Int {
+//        let format = NSNumberFormatter()
+//        format.numberStyle = NSNumberFormatterStyle.DecimalStyle
+//        format.maximumFractionDigits = 0
+        let windSpdKph = ((self.windSpeed*60)*60)/1000
+        return Int(windSpdKph)
+    }
+    
 }

@@ -23,42 +23,39 @@ class TableViewCellToday: UITableViewCell {
     
     func setCellContent(obj:TimeslotMeasured) {
         let formatter = NSDateFormatter()
-        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        formatter.dateStyle = NSDateFormatterStyle.NoStyle
         formatter.timeStyle = .ShortStyle
         lblTime.text = formatter.stringFromDate(obj.dateAndTime)
         lblMainWeather.text = "- \(obj.weatherMainly): "
         lblWeatherDescription.text = obj.weatherDescription
-        lblTemp.text = "\(obj.mainTempInCelsius) C°"
+        lblWeatherDescription.hidden = true //too much...
+        lblTemp.text = "\(obj.getTempInCelsius()) C°"
         lblHumidity.text = "\(obj.mainHumidity) %"
         lblCloudiness.text = "\(obj.cloudiness) %"
-        let windSpdKph = ((obj.windSpeed*60)*60)/1000
-        lblWindSpeed.text = "\(windSpdKph) Kph"
-        lblWindDegree.text = getWindDirection(obj.windDegree)
+        lblWindSpeed.text = "\(obj.getWindSpeedInKph()) Kph"
+        lblWindDegree.text = obj.getWindDirection()
         lblRainVolume.text = "\(obj.rainVolume) mm"
-                
+        lblImage.image = UIImage(data: obj.getPictureData())
+//        lblImage.setImageFromUrl("http://openweathermap.org/img/w/\(obj.weatherIcon).png")
     }
     
-    func getWindDirection(degree:Float) -> String {
-        if degree >= 348.75 && degree < 22.25 {
-            return "N"
-        } else if degree >= 11.25 && degree < 56.25 {
-            return "NE"
-        } else if degree >= 56.25 && degree < 101.25 {
-            return "E"
-        } else if degree >= 101.25 && degree < 146.25 {
-            return "SE"
-        } else if degree >= 146.25 && degree < 191.25 {
-            return "S"
-        } else if degree >= 191.25 && degree < 236.25 {
-            return "SW"
-        } else if degree >= 236.25 && degree < 281.25 {
-            return "W"
-        } else if degree >= 281.25 && degree < 348.75 {
-            return "NW"
-        }
-        else {
-            return "NoDir"
+
+    
+
+}
+
+//getPictureData ist zwar ein Synchroner Aufruf, allerdings Funktinoniert dieser wenigstens... Die Extension von UIImageView ist asynchron, aber läd nicht alle bilder.... Keine Ahnung warum.
+extension UIImageView {
+    public func setImageFromUrl(urlString:String) {
+        if let url = NSURL(string: urlString) {
+            let request = NSURLRequest(URL: url)
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let session = NSURLSession(configuration: config)
+            session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+                if let imageData = data as NSData? {
+                    self.image = UIImage(data: imageData)
+                }
+            }).resume()
         }
     }
-    
 }

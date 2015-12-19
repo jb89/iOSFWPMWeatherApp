@@ -49,7 +49,6 @@ class GetData {
         self.jsonData = NSData()
         putDataInDict()
     }
-
     
     func buildStringForDailyForecast() -> NSURL {
         let url = "http://api.openweathermap.org/data/2.5/weather?q=\(self.cityName),uk&appid=2de143494c0b295cca9337e1e96b00e0"
@@ -142,9 +141,7 @@ class GetData {
                 print("Date \(newDate.description) is later than \(latestDate.description) and will not be saved.")
             }
           
-        }
-        forecastObj?.printForecastObject()
-    
+        }    
     }
     
     func shortenDate(date:NSDate) -> NSDate {
