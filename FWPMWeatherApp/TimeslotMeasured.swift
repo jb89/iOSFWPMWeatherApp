@@ -42,7 +42,7 @@ class TimeslotMeasured {
     }
     
     func description() -> String {
-        return "Date: \(self.dateAndTime.description), Temp: \(self.temperatureDescription()), Humidity: \(self.mainHumidity), Weather: \(self.weatherDescription)"
+        return "Date: \(self.dateAndTime.description), Temp: \(self.temperatureDescription()), Humidity: \(self.mainHumidity), Weather: \(self.weatherMainly)"
     }
     
     func temperatureDescription() -> String {

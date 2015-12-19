@@ -21,6 +21,7 @@
 		3F9BCC411C24516100F2B09F /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9BCC401C24516100F2B09F /* ForecastObject.swift */; };
 		3F9BCC431C24519400F2B09F /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9BCC421C24519400F2B09F /* City.swift */; };
 		3F9BCC451C2451C200F2B09F /* TimeslotMeasured.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9BCC441C2451C200F2B09F /* TimeslotMeasured.swift */; };
+		3FD098FF1C256E7B0056EBE6 /* TableViewCellToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD098FE1C256E7B0056EBE6 /* TableViewCellToday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		3F9BCC401C24516100F2B09F /* ForecastObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastObject.swift; sourceTree = "<group>"; };
 		3F9BCC421C24519400F2B09F /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		3F9BCC441C2451C200F2B09F /* TimeslotMeasured.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeslotMeasured.swift; sourceTree = "<group>"; };
+		3FD098FE1C256E7B0056EBE6 /* TableViewCellToday.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellToday.swift; sourceTree = "<group>"; };
 		54DD58805AA5A0F87B0FADCD /* Pods-FWPMWeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FWPMWeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FWPMWeatherApp/Pods-FWPMWeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		72A4E65F2E3AE024BDE60046 /* Pods-FWPMWeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FWPMWeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FWPMWeatherApp/Pods-FWPMWeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		7757AB7463454C61C5415C4F /* Pods_FWPMWeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FWPMWeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 				3F4399201C1C7C0E006E2C38 /* WeathermapViewController.swift */,
 				3F45CC6B1C1C1F8F00B22295 /* AppDelegate.swift */,
 				3F4399221C1C7D0E006E2C38 /* WeeklyForecastDayCell.swift */,
+				3FD098FE1C256E7B0056EBE6 /* TableViewCellToday.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F43991F1C1C7BEE006E2C38 /* WeeklyForecastViewController.swift in Sources */,
+				3FD098FF1C256E7B0056EBE6 /* TableViewCellToday.swift in Sources */,
 				3F4399211C1C7C0E006E2C38 /* WeathermapViewController.swift in Sources */,
 				3F9BCC431C24519400F2B09F /* City.swift in Sources */,
 				3F4399231C1C7D0E006E2C38 /* WeeklyForecastDayCell.swift in Sources */,

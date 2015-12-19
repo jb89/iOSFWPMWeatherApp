@@ -21,7 +21,8 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
     DataSource: Provides, what is displayed in the cells
 */
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewToday: UITableView!
+    
     var forecastObj:ForecastObject?
 
     override func viewDidLoad() {
@@ -37,22 +38,28 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("numberOfRowsInSection")
-        if let frcast = ForecastObject.instance {
-            self.forecastObj = frcast
-            return frcast.daysArray.count
-        } else {
-            return 0
+        if tableView == tableViewToday {
+            if let frcast = ForecastObject.instance {
+                self.forecastObj = frcast
+                return frcast.daysArray[0].count
+            } else {
+                return 0
+            }
         }
+        return 0
+
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         print("gettin cell..")
-        let cell = tableView.dequeueReusableCellWithIdentifier("WeeklyForecastDayCell") as! WeeklyForecastDayCell
-//        cell.setContentForCell("Today", date: "12.12.2015", temp: "20", imgPath: "/Users/student/Documents/FWPMWeatherApp/FWPMWeatherApp/Assets.xcassets/Foggy.imageset/Foggy.png", rainy: "20%")
-        var timeslot:TimeslotMeasured = forecastObj!.daysArray[indexPath.row][0]
-        cell.setContentForCell("Saturday", date: timeslot.dateAndTime.description, temp: timeslot.temperatureDescription(), rainy: timeslot.weatherDescription)
-        print("cell setted")
-        return cell
+        if tableView == tableViewToday {
+            let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCellToday") as! TableViewCellToday
+            let timeslot:TimeslotMeasured = forecastObj!.daysArray[0][indexPath.row]
+            cell.setCellContent(timeslot)
+            print("cell setted")
+            return cell
+        }
+        return UITableViewCell()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
