@@ -43,8 +43,12 @@ class GetData {
     var cityName:String
     var jsonData:NSData
     var forecastObj:ForecastObject?
+    var wasSuccess:Bool = true
+    var errorMsg:String=""
+    var lblResponse:UILabel
     
-    init(cityName:String) {
+    init(cityName:String, lblResponseTxt:UILabel) {
+        self.lblResponse = lblResponseTxt
         self.cityName = cityName
         self.jsonData = NSData()
         putDataInDict()
@@ -66,18 +70,33 @@ class GetData {
         let session = NSURLSession(configuration: config)
 
         session.dataTaskWithRequest(request, completionHandler: {(data,response,error) in
+            
             guard let data = data else {
                 return
             }
             self.jsonData = data
             print("got data")
+            
             self.parseJson(self.jsonData)
         }).resume()
     }
     
     //JSON Data in Datenmodell parsen
     func parseJson(data: NSData) {
+        
         let json = JSON(data: self.jsonData)
+        print(json)
+        let err = json["cod"].intValue
+        if err != 200 {
+            if err == 404 {
+                self.errorMsg = "\(json["message"].stringValue)"
+                lblResponse.text = self.errorMsg
+                lblResponse.hidden = false
+                self.wasSuccess = false
+                return
+            }
+        }
+
         
         let cty = City(name: json["city"]["name"].stringValue, country: json["city"]["country"].stringValue)
         forecastObj = ForecastObject.sharedInstance(cty)
@@ -141,7 +160,8 @@ class GetData {
                 print("Date \(newDate.description) is later than \(latestDate.description) and will not be saved.")
             }
           
-        }    
+        }
+        self.wasSuccess = true
     }
     
     func shortenDate(date:NSDate) -> NSDate {

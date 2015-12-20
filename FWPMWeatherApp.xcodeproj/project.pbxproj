@@ -10,13 +10,14 @@
 		2A7729C0F631290908560E29 /* Pods_FWPMWeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7757AB7463454C61C5415C4F /* Pods_FWPMWeatherApp.framework */; };
 		3F43991F1C1C7BEE006E2C38 /* WeeklyForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43991E1C1C7BEE006E2C38 /* WeeklyForecastViewController.swift */; };
 		3F4399211C1C7C0E006E2C38 /* WeathermapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4399201C1C7C0E006E2C38 /* WeathermapViewController.swift */; };
-		3F4399231C1C7D0E006E2C38 /* WeeklyForecastDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4399221C1C7D0E006E2C38 /* WeeklyForecastDayCell.swift */; };
 		3F45CC6C1C1C1F8F00B22295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45CC6B1C1C1F8F00B22295 /* AppDelegate.swift */; };
 		3F45CC6E1C1C1F8F00B22295 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45CC6D1C1C1F8F00B22295 /* HomeScreenViewController.swift */; };
 		3F45CC711C1C1F8F00B22295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F45CC6F1C1C1F8F00B22295 /* Main.storyboard */; };
 		3F45CC731C1C1F8F00B22295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F45CC721C1C1F8F00B22295 /* Assets.xcassets */; };
 		3F45CC761C1C1F8F00B22295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F45CC741C1C1F8F00B22295 /* LaunchScreen.storyboard */; };
 		3F45CC811C1C24AB00B22295 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45CC801C1C24AB00B22295 /* GetData.swift */; };
+		3F5522101C270461003F254E /* TableViewCellForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F55220F1C270461003F254E /* TableViewCellForecast.swift */; };
+		3F5522121C271803003F254E /* JsonErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5522111C271803003F254E /* JsonErrors.swift */; };
 		3F7887D71C1D82FE00478DFB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7887D61C1D82FE00478DFB /* SwiftyJSON.framework */; };
 		3F9BCC411C24516100F2B09F /* ForecastObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9BCC401C24516100F2B09F /* ForecastObject.swift */; };
 		3F9BCC431C24519400F2B09F /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9BCC421C24519400F2B09F /* City.swift */; };
@@ -28,7 +29,6 @@
 /* Begin PBXFileReference section */
 		3F43991E1C1C7BEE006E2C38 /* WeeklyForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyForecastViewController.swift; sourceTree = "<group>"; };
 		3F4399201C1C7C0E006E2C38 /* WeathermapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeathermapViewController.swift; sourceTree = "<group>"; };
-		3F4399221C1C7D0E006E2C38 /* WeeklyForecastDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyForecastDayCell.swift; sourceTree = "<group>"; };
 		3F45CC681C1C1F8F00B22295 /* FWPMWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FWPMWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F45CC6B1C1C1F8F00B22295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F45CC6D1C1C1F8F00B22295 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +37,8 @@
 		3F45CC751C1C1F8F00B22295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F45CC771C1C1F8F00B22295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F45CC801C1C24AB00B22295 /* GetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
+		3F55220F1C270461003F254E /* TableViewCellForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellForecast.swift; sourceTree = "<group>"; };
+		3F5522111C271803003F254E /* JsonErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonErrors.swift; sourceTree = "<group>"; };
 		3F7887D61C1D82FE00478DFB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		3F9BCC401C24516100F2B09F /* ForecastObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastObject.swift; sourceTree = "<group>"; };
 		3F9BCC421C24519400F2B09F /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				3F9BCC441C2451C200F2B09F /* TimeslotMeasured.swift */,
 				3F9BCC401C24516100F2B09F /* ForecastObject.swift */,
 				3F9BCC421C24519400F2B09F /* City.swift */,
+				3F5522111C271803003F254E /* JsonErrors.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -118,9 +121,9 @@
 				3F43991E1C1C7BEE006E2C38 /* WeeklyForecastViewController.swift */,
 				3F4399201C1C7C0E006E2C38 /* WeathermapViewController.swift */,
 				3F45CC6B1C1C1F8F00B22295 /* AppDelegate.swift */,
-				3F4399221C1C7D0E006E2C38 /* WeeklyForecastDayCell.swift */,
 				3FD098FE1C256E7B0056EBE6 /* TableViewCellToday.swift */,
 				3FD099001C25B95A0056EBE6 /* TabBarController.swift */,
+				3F55220F1C270461003F254E /* TableViewCellForecast.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -266,11 +269,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F43991F1C1C7BEE006E2C38 /* WeeklyForecastViewController.swift in Sources */,
+				3F5522101C270461003F254E /* TableViewCellForecast.swift in Sources */,
+				3F5522121C271803003F254E /* JsonErrors.swift in Sources */,
 				3FD098FF1C256E7B0056EBE6 /* TableViewCellToday.swift in Sources */,
 				3FD099011C25B95A0056EBE6 /* TabBarController.swift in Sources */,
 				3F4399211C1C7C0E006E2C38 /* WeathermapViewController.swift in Sources */,
 				3F9BCC431C24519400F2B09F /* City.swift in Sources */,
-				3F4399231C1C7D0E006E2C38 /* WeeklyForecastDayCell.swift in Sources */,
 				3F45CC6E1C1C1F8F00B22295 /* HomeScreenViewController.swift in Sources */,
 				3F45CC6C1C1C1F8F00B22295 /* AppDelegate.swift in Sources */,
 				3F9BCC451C2451C200F2B09F /* TimeslotMeasured.swift in Sources */,

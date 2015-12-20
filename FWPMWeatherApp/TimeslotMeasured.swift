@@ -33,6 +33,14 @@ class TimeslotMeasured {
         self.windSpeed = windSpeed
         self.windDegree = windDegree
         self.rainVolume = rainVolume
+        roundRainVol()
+    }
+    
+    func roundRainVol() -> Float {
+        let format = NSNumberFormatter()
+        format.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        format.maximumFractionDigits = 1
+        return Float(format.stringFromNumber(self.rainVolume)!)!
     }
     
     func getTempInCelsius() -> Float {
@@ -78,11 +86,30 @@ class TimeslotMeasured {
     }
     
     func getWindSpeedInKph() -> Int {
-//        let format = NSNumberFormatter()
-//        format.numberStyle = NSNumberFormatterStyle.DecimalStyle
-//        format.maximumFractionDigits = 0
         let windSpdKph = ((self.windSpeed*60)*60)/1000
         return Int(windSpdKph)
     }
+    
+    func getTempInCelsiusAsString() -> String {
+        return "\(self.getTempInCelsius())°C"
+    }
+    
+    func getHumidityAsString() -> String {
+        return "\(self.mainHumidity)%"
+    }
+    
+    func getCloudinessAsString() -> String {
+        return "\(self.cloudiness)%"
+    }
+    
+    func getWindSpeedInKphAsString() -> String {
+        return "\(self.getWindSpeedInKph()) Kph"
+    }
+    
+    func getRainVolumeAsString() -> String {
+        return "\(self.rainVolume) mm"
+    }
+    
+    
     
 }

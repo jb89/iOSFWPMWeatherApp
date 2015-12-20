@@ -21,14 +21,35 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
     DataSource: Provides, what is displayed in the cells
 */
     
+    @IBOutlet weak var lblCity: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var tableViewToday: UITableView!
+    @IBOutlet weak var tableViewForecast: UITableView!
     
     var forecastObj:ForecastObject?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("weeklyForecast Controller loaded")
+        setHeaderTextes()
     }
+    
+    private func setHeaderTextes() {
+        var city:String
+        var date:String
+        if let frcast = ForecastObject.instance {
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.FullStyle
+            date = formatter.stringFromDate(frcast.daysArray[0][0].dateAndTime)
+            city = "\(frcast.city.name) in \(frcast.city.country)".replaceUmlauteFromEnglish()
+        } else {
+            date = " "
+            city = "no city found"
+        }
+        lblCity.text = city
+        lblDate.text = date
+    }
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
                 print("sumberOfsectionsInTableview")
@@ -37,29 +58,33 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection")
-        if tableView == tableViewToday {
-            if let frcast = ForecastObject.instance {
-                self.forecastObj = frcast
-                return frcast.daysArray[0].count
-            } else {
-                return 0
-            }
+        //print("numberOfRowsInSection")
+        if let frcast = ForecastObject.instance {
+            self.forecastObj = frcast
+        } else {
+            return 0
         }
-        return 0
-
+        if tableView == tableViewToday {
+            return forecastObj!.daysArray[0].count
+        } else {
+            return (forecastObj!.daysArray.count - 1) // -1 weil der erste Tag ja schon oben angezeigt wird
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("gettin cell..")
+        //print("gettin cell..")
         if tableView == tableViewToday {
             let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCellToday") as! TableViewCellToday
             let timeslot:TimeslotMeasured = forecastObj!.daysArray[0][indexPath.row]
             cell.setCellContent(timeslot)
-            print("cell setted")
+            //print("cell setted")
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCellForecast") as! TableViewCellForecast
+            let oneDayArray = forecastObj!.daysArray[(indexPath.row + 1)] // + 1 weil bei .count eins abgezogen wurde
+            cell.setContentToCell(oneDayArray)
             return cell
         }
-        return UITableViewCell()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
