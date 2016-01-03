@@ -24,6 +24,7 @@ class TableViewCellForecast: UITableViewCell {
     @IBOutlet weak var imgWarmest: UIImageView!
     
     func setContentToCell(arr:Array<TimeslotMeasured>) {
+        
         var coldestTemp:Float = arr[0].mainTempInKelvin
         var coldestForecast:TimeslotMeasured = arr[0]
         var warmestTemp:Float = arr[0].mainTempInKelvin

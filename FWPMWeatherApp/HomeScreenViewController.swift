@@ -27,8 +27,10 @@ class HomeScreenViewController: UIViewController {
         
         if gData.wasSuccess {
             lblResponseText.text = successText
+            lblResponseText.textColor = UIColor.greenColor()
         } else {
             lblResponseText.text = errorText
+            lblResponseText.textColor = UIColor.redColor()
         }
         lblResponseText.hidden = false
     }
@@ -46,8 +48,10 @@ class HomeScreenViewController: UIViewController {
         let gData = GetData(cityName: city, lblResponseTxt: lblResponseText)
         if gData.wasSuccess {
             lblResponseText.text = successText
+            lblResponseText.textColor = UIColor.greenColor()
         } else {
             lblResponseText.text = gData.errorMsg
+            lblResponseText.textColor = UIColor.redColor()
         }
         lblResponseText.hidden = false
         

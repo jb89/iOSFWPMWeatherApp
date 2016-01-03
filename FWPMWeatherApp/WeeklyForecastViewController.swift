@@ -41,7 +41,7 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
             let formatter = NSDateFormatter()
             formatter.dateStyle = NSDateFormatterStyle.FullStyle
             date = formatter.stringFromDate(frcast.daysArray[0][0].dateAndTime)
-            city = "\(frcast.city.name) in \(frcast.city.country)".replaceUmlauteFromEnglish()
+            city = "\(frcast.city.name), \(frcast.city.country)".replaceUmlauteFromEnglish()
         } else {
             date = " "
             city = "no city found"
@@ -82,13 +82,22 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCellForecast") as! TableViewCellForecast
             let oneDayArray = forecastObj!.daysArray[(indexPath.row + 1)] // + 1 weil bei .count eins abgezogen wurde
-            cell.setContentToCell(oneDayArray)
+            if !oneDayArray.isEmpty {
+                cell.setContentToCell(oneDayArray)
+                return cell
+            }
             return cell
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //hier wird der selektierte Tag an den nächsten Controller weiter gegeben
+        if segue.identifier == "showDailyForecast" {
+            let indexPath = tableViewForecast.indexPathForSelectedRow!
+            let oneDayArray = forecastObj!.daysArray[(indexPath.row + 1)]
+            let d = segue.destinationViewController as! DailyForecastViewController
+            d.dayArray = oneDayArray
+        }
     }
     
     

@@ -33,10 +33,9 @@ class TimeslotMeasured {
         self.windSpeed = windSpeed
         self.windDegree = windDegree
         self.rainVolume = rainVolume
-        roundRainVol()
     }
     
-    func roundRainVol() -> Float {
+    func roundedRainVol() -> Float {
         let format = NSNumberFormatter()
         format.numberStyle = NSNumberFormatterStyle.DecimalStyle
         format.maximumFractionDigits = 1
@@ -107,7 +106,7 @@ class TimeslotMeasured {
     }
     
     func getRainVolumeAsString() -> String {
-        return "\(self.rainVolume) mm"
+        return "\(self.roundedRainVol()) mm"
     }
     
     
