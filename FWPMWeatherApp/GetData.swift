@@ -55,12 +55,12 @@ class GetData {
     }
     
     func buildStringForDailyForecast() -> NSURL {
-        let url = "http://api.openweathermap.org/data/2.5/weather?q=\(self.cityName),uk&appid=2de143494c0b295cca9337e1e96b00e0"
+        let url = "http://api.openweathermap.org/data/2.5/weather?q=\(self.cityName),uk&appid=4e6b6b86e87629419c0a4375784db9cc"
         return NSURL(string: url)!
     }
     
     func buildStringForWeeklyForecast() -> NSURL {
-        let url = "http://api.openweathermap.org/data/2.5/forecast?q=\(self.cityName),uk&mode=json&appid=2de143494c0b295cca9337e1e96b00e0"
+        let url = "http://api.openweathermap.org/data/2.5/forecast?q=\(self.cityName),uk&mode=json&appid=4e6b6b86e87629419c0a4375784db9cc"
         return NSURL(string: url)!
     }
     
@@ -98,7 +98,7 @@ class GetData {
         }
 
         
-        let cty = City(name: json["city"]["name"].stringValue, country: json["city"]["country"].stringValue)
+        let cty = City(name: json["city"]["name"].stringValue, country: json["city"]["country"].stringValue, lon: json["city"]["coord"]["lon"].doubleValue, lat: json["city"]["coord"]["lat"].doubleValue)
         forecastObj = ForecastObject.sharedInstance(cty)
         var allTimeslots = [TimeslotMeasured]()
         //Jeden für jeden Datenslot im JSON einen Datenslot im Datenmodell erstellen

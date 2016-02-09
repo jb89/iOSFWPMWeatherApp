@@ -11,4 +11,6 @@ import Foundation
 struct City {
     var name:String
     var country:String
+    var lon:Double
+    var lat:Double
 }

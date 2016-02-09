@@ -34,6 +34,7 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
         setHeaderTextes()
     }
     
+    
     private func setHeaderTextes() {
         var city:String
         var date:String
@@ -49,7 +50,7 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
         lblCity.text = city
         lblDate.text = date
     }
-    
+     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
                 print("sumberOfsectionsInTableview")
@@ -90,6 +91,8 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //hier wird der selektierte Tag an den nächsten Controller weiter gegeben
         if segue.identifier == "showDailyForecast" {
@@ -97,6 +100,8 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
             let oneDayArray = forecastObj!.daysArray[(indexPath.row + 1)]
             let d = segue.destinationViewController as! DailyForecastViewController
             d.dayArray = oneDayArray
+            tableViewForecast.deselectRowAtIndexPath(indexPath, animated: false)
+            tableViewToday.deselectRowAtIndexPath(indexPath, animated: false)
         }
     }
     
