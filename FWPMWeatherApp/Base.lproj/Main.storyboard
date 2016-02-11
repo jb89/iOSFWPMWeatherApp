@@ -816,6 +816,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="7Nx-om-xJJ"/>
                     <connections>
+                        <outlet property="btnDefault" destination="Bai-UT-NVy" id="7lO-qa-eei"/>
                         <outlet property="btnGo" destination="u8m-sW-9K9" id="nIf-4n-Iw0"/>
                         <outlet property="lblResponseText" destination="gj8-F1-mzE" id="vRr-Sq-dwJ"/>
                         <outlet property="txtfldInsertText" destination="ZZx-NA-FuN" id="1MU-Ql-Gkd"/>

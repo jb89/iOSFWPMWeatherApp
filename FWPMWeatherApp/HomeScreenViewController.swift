@@ -13,6 +13,7 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var txtfldInsertText: UITextField!
     @IBOutlet weak var btnGo: UIButton!
     @IBOutlet weak var lblResponseText: UILabel!
+    @IBOutlet weak var btnDefault: UIButton!
     let errorText:String = "Some error occured... did u Spell the city correctly?"
     let successText:String = "Data loaded correctly"
 
@@ -22,6 +23,7 @@ class HomeScreenViewController: UIViewController {
         lblResponseText.hidden = true
         lblResponseText.text = successText
         lblResponseText.textColor = UIColor.greenColor()
+        btnDefault.hidden = true
     }
     
     @IBAction func actionDefaultButton(sender: UIButton) { //FOR FASTER TESTING PURPOSES..
