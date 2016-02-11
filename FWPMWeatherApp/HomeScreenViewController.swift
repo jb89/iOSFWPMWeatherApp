@@ -20,19 +20,12 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         btnGo.hidden = true
         lblResponseText.hidden = true
+        lblResponseText.text = successText
+        lblResponseText.textColor = UIColor.greenColor()
     }
     
     @IBAction func actionDefaultButton(sender: UIButton) { //FOR FASTER TESTING PURPOSES..
-        let gData = GetData(cityName: "Wuerzburg", lblResponseTxt: lblResponseText)
-        
-        if gData.wasSuccess {
-            lblResponseText.text = successText
-            lblResponseText.textColor = UIColor.greenColor()
-        } else {
-            lblResponseText.text = errorText
-            lblResponseText.textColor = UIColor.redColor()
-        }
-        lblResponseText.hidden = false
+        _ = GetData(cityName: "Wuerzburg", lblResponseTxt: lblResponseText)
     }
     
     @IBAction func txtfldEditingChanged(sender: UITextField) {
@@ -45,16 +38,7 @@ class HomeScreenViewController: UIViewController {
         var city:String = txtfldInsertText.text!
         city = city.replaceUmlauteToEnglish()
 
-        let gData = GetData(cityName: city, lblResponseTxt: lblResponseText)
-        if gData.wasSuccess {
-            lblResponseText.text = successText
-            lblResponseText.textColor = UIColor.greenColor()
-        } else {
-            lblResponseText.text = gData.errorMsg
-            lblResponseText.textColor = UIColor.redColor()
-        }
-        lblResponseText.hidden = false
-        
+        _ = GetData(cityName: city, lblResponseTxt: lblResponseText)
         //Wanted to Switch the View to ForecastView when data is successfully loaded... but ViewController doesnt get instantiated correctly..
 //        self.tabBarController?.selectedIndex = 1
 //        let fcVC = self.storyboard?.instantiateViewControllerWithIdentifier("WeeklyForecastViewController")

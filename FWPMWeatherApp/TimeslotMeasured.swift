@@ -35,6 +35,19 @@ class TimeslotMeasured {
         self.rainVolume = rainVolume
     }
     
+    init() {
+        self.dateAndTime = NSDate()
+        self.mainTempInKelvin = 273.15
+        self.mainHumidity = 1
+        self.weatherMainly = "No Weather Data"
+        self.weatherDescription = " "
+        self.weatherIcon = " "
+        self.cloudiness = 0
+        self.windSpeed = 0.0
+        self.windDegree = 0.0
+        self.rainVolume = 0.0
+    }
+    
     func roundedRainVol() -> Float {
         let format = NSNumberFormatter()
         format.numberStyle = NSNumberFormatterStyle.DecimalStyle

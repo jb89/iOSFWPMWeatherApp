@@ -71,13 +71,16 @@ class GetData {
 
         session.dataTaskWithRequest(request, completionHandler: {(data,response,error) in
             
-            guard let data = data else {
-                return
-            }
-            self.jsonData = data
-            print("got data")
+        guard let data = data else {
+            self.wasSuccess = false
+            self.setLabelText()
+            self.errorMsg = "No Data"
+            return
+        }
+        self.jsonData = data
+        //print("got data")
             
-            self.parseJson(self.jsonData)
+        self.parseJson(self.jsonData)
         }).resume()
     }
     
@@ -85,16 +88,13 @@ class GetData {
     func parseJson(data: NSData) {
         
         let json = JSON(data: self.jsonData)
-        print(json)
+        //print(json)
         let err = json["cod"].intValue
         if err != 200 {
-            if err == 404 {
-                self.errorMsg = "\(json["message"].stringValue)"
-                lblResponse.text = self.errorMsg
-                lblResponse.hidden = false
-                self.wasSuccess = false
-                return
-            }
+            self.errorMsg = "\(json["message"].stringValue)"
+            self.wasSuccess = false
+            self.setLabelText()
+            return
         }
 
         
@@ -116,7 +116,15 @@ class GetData {
             //Create a new TimeslotMeasured-Object and put in Array.
             allTimeslots.append(TimeslotMeasured(dateAndTimeUnix: dt, mainTemp: temp, mainHumidity: humidity, weatherMainly: weatherMainly, weatherDescription: weatherDescr, weatherIcon: weatherIcon, cloudiness: cloudy, windSpeed: windSpeed, windDegree: windDegree, rainVolume: rain))
         }
-       
+        
+        if allTimeslots.count == 0 {
+            allTimeslots.append(TimeslotMeasured()) //Macht einen leeren Timeslot. Wenn also eine City geladen wird aber keine dazu gehörigen Daten, wird dann im Forecast angezeigt dass es keine Daten gibt.
+            self.wasSuccess=false
+            self.errorMsg = "No Weather Data"
+            self.setLabelText()
+            return
+        }
+        
         var tempDate:NSDate = self.shortenDate(allTimeslots[0].dateAndTime)
         
         //Kalkuliertes Datum.. Der fünfte Tag nach dem ersten Messtag --> Wird gebraucht um zu prüfen ob eine Messzeit länger als 4 Tage weg ist
@@ -159,9 +167,8 @@ class GetData {
             } else {
                 print("Date \(newDate.description) is later than \(latestDate.description) and will not be saved.")
             }
-          
         }
-        self.wasSuccess = true
+        self.setLabelText()
     }
     
     func shortenDate(date:NSDate) -> NSDate {
@@ -178,6 +185,14 @@ class GetData {
         //print("formatted Date \(date.description) to \(latestDate.description)")
         
         return latestDate
+    }
+    
+    func setLabelText() {
+        if self.wasSuccess == false {
+            lblResponse.text = errorMsg
+            lblResponse.textColor = UIColor.redColor()
+        }
+        lblResponse.hidden = false
     }
     
 }

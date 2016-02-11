@@ -30,7 +30,7 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("weeklyForecast Controller loaded")
+        //print("weeklyForecast Controller loaded")
         setHeaderTextes()
     }
     
@@ -50,10 +50,9 @@ class WeeklyForecastViewController: UIViewController, UITableViewDelegate, UITab
         lblCity.text = city
         lblDate.text = date
     }
-     
-    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-                print("sumberOfsectionsInTableview")
+        //print("sumberOfsectionsInTableview")
         return 1
 
     }
