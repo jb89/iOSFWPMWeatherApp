@@ -39,6 +39,8 @@ class HomeScreenViewController: UIViewController {
     @IBAction func btnPressedOk(sender: UIButton) {
         var city:String = txtfldInsertText.text!
         city = city.replaceUmlauteToEnglish()
+        city = city.removeWhitespace()
+        
 
         _ = GetData(cityName: city, lblResponseTxt: lblResponseText)
         //Wanted to Switch the View to ForecastView when data is successfully loaded... but ViewController doesnt get instantiated correctly..
@@ -66,6 +68,14 @@ extension String {
             .stringByReplacingOccurrencesOfString("AE", withString: "Ä")
             .stringByReplacingOccurrencesOfString("OE", withString: "Ö")
             .stringByReplacingOccurrencesOfString("UE", withString: "Ü")
+    }
+    
+    func replace(str:String, replacement:String) -> String {
+        return self.stringByReplacingOccurrencesOfString(str, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    }
+    
+    func removeWhitespace() -> String {
+        return self.replace(" ", replacement: "")
     }
     
 }
